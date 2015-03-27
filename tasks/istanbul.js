@@ -23,13 +23,12 @@ module.exports = function(grunt) {
                 .async());
           });
 
-  grunt.registerTask('reloadTasks', 'override instrumented tasks', function(
-      target) {
+  grunt.registerTask('reloadTasks', 'override instrumented tasks', function(target) {
     var key = 'reloadTasks.rootPath';
     this.requiresConfig(key);
-    var path = grunt.config(key);
-    grunt.verbose.writeln('Tasks from ' + path);
-    grunt.loadTasks(path);
+    var files = grunt.config(key);
+    grunt.verbose.writeln('Tasks from ' + files);
+    grunt.file.expand(files).forEach(grunt.loadTasks);
     grunt.log.ok();
   });
 
