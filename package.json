@@ -1,5 +1,5 @@
 {
-  "name": "grunt-istanbul",
+  "name": "grunt-istanbul-c",
   "description": "JavaScript codecoverage tool for Grunt",
   "version": "0.5.0",
   "homepage": "https://github.com/taichi/grunt-istanbul",
