@@ -4,8 +4,8 @@ module.exports = function(grunt) {
   var dateFormat = require('dateformat');
 
   var tests = 'test/**/*_test.js';
-  var tasks = 'tasks/**/*.js';
-  var reportDir = 'build/reports/' + dateFormat(new Date(), 'yyyymmdd-HHMMss');
+  var tasks = 'src/**/*.js';
+  var reportDir = 'build/reports/';
 
   grunt.initConfig({
     clean : [ 'build' ],
@@ -41,7 +41,7 @@ module.exports = function(grunt) {
       }
     },
     reloadTasks : {
-      rootPath : 'build/instrument/tasks'
+      rootPath : 'build/instrument/**'
     },
     storeCoverage : {
       options : {
@@ -63,10 +63,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
-
   grunt.registerTask('test', 'nodeunit');
   grunt.registerTask('default', [ 'jshint', 'test' ]);
-  grunt.registerTask('cover', [ 'clean', 'instrument', 'reloadTasks', 'test',
+  grunt.registerTask('cover', ['clean', 'instrument', 'reloadTasks', 'test',
       'storeCoverage', 'makeReport' ]);
 
 };
